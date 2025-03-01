@@ -1,0 +1,116 @@
+{
+  "frontMatter.framework.id": "jekyll",
+  "frontMatter.content.publicFolder": "assets",
+  "frontMatter.content.pageFolders": [
+    {
+      "title": "skating",
+      "path": "[[workspace]]/_skating"
+    },
+    {
+      "title": "cats",
+      "path": "[[workspace]]/_cats"
+    },
+    {
+      "title": "journal",
+      "path": "[[workspace]]/_journal"
+    },
+    {
+      "title": "random",
+      "path": "[[workspace]]/_random"
+    }
+  ],
+  "frontMatter.taxonomy.contentTypes": [
+    {
+      "name": "skating",
+      "pageBundle": false,
+      "fields": [
+        {
+          "title": "Title",
+          "name": "title",
+          "type": "string",
+          "required": true
+        },
+        {
+          "title": "Date",
+          "name": "date",
+          "type": "datetime",
+          "required": true
+        },
+        {
+          "title": "Image",
+          "name": "image",
+          "type": "image"
+        }
+      ]
+    },
+    {
+      "name": "journal",
+      "pageBundle": false,
+      "fields": [
+        {
+          "title": "Title",
+          "name": "title",
+          "type": "string",
+          "required": true
+        },
+        {
+          "title": "Date",
+          "name": "date",
+          "type": "datetime",
+          "required": true
+        },
+        {
+          "title": "Mood",
+          "name": "mood",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "random",
+      "pageBundle": false,
+      "fields": [
+        {
+          "title": "Title",
+          "name": "title",
+          "type": "string",
+          "required": true
+        },
+        {
+          "title": "Date",
+          "name": "date",
+          "type": "datetime",
+          "required": true
+        }
+      ]
+    }
+  ]
+}
+          "type": "string",
+          "required": true
+        },
+        {
+          "title": "Date",
+          "name": "date",
+          "type": "datetime",
+          "required": true
+        },
+        {
+          "title": "YouTube Video ID",
+          "name": "video_id",
+          "type": "string"
+        },
+        {
+          "title": "Location",
+          "name": "location",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "cats",
+      "pageBundle": false,
+      "fields": [
+        {
+          "title": "Title",
+          "name": "title",
