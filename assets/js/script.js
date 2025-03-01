@@ -1,65 +1,66 @@
-// Wait for document to be fully loaded
+// Wait for the document to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
-  // Add some 90s-00s flair with cursor trails
-  const cursorTrail = document.createElement('div');
-  cursorTrail.className = 'cursor-trail';
-  document.body.appendChild(cursorTrail);
-
-  let trailElements = [];
-  const trailLength = 10;
-
-  for (let i = 0; i < trailLength; i++) {
-    const trailElement = document.createElement('div');
-    trailElement.className = 'trail';
-    trailElement.style.width = '8px';
-    trailElement.style.height = '8px';
-    trailElement.style.backgroundColor = `hsl(${i * 36}, 100%, 50%)`;
-    trailElement.style.borderRadius = '50%';
-    trailElement.style.position = 'fixed';
-    trailElement.style.zIndex = '9999';
-    trailElement.style.opacity = 1 - (i / trailLength);
-    trailElement.style.pointerEvents = 'none';
-    document.body.appendChild(trailElement);
-    trailElements.push({
-      element: trailElement,
-      x: 0,
-      y: 0
+  // Make message board rows clickable
+  const messageRows = document.querySelectorAll('.message-row');
+  messageRows.forEach(row => {
+    row.addEventListener('click', function() {
+      const url = this.getAttribute('data-post-url');
+      if (url) {
+        window.location.href = url;
+      }
     });
-  }
+  });
 
-  // Update cursor trail positions
-  document.addEventListener('mousemove', function(e) {
-    // Update first element to cursor position
-    trailElements[0].x = e.clientX;
-    trailElements[0].y = e.clientY;
-    trailElements[0].element.style.left = `${trailElements[0].x}px`;
-    trailElements[0].element.style.top = `${trailElements[0].y}px`;
+  // Add fancy cursor trail effect
+  let trail = [];
+  const trailLength = 8;
+  
+  for (let i = 0; i < trailLength; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'cursor-trail';
+    dot.style.width = (8 - i) + 'px';
+    dot.style.height = (8 - i) + 'px';
+    dot.style.backgroundColor = `hsl(${i * 30}, 100%, 50%)`;
+    dot.style.position = 'fixed';
+    dot.style.borderRadius = '50%';
+    dot.style.zIndex = '9999';
+    dot.style.pointerEvents = 'none';
+    dot.style.opacity = 1 - (i / trailLength);
+    document.body.appendChild(dot);
+    trail.push({element: dot, x: 0, y: 0});
+  }
+  
+  document.addEventListener('mousemove', e => {
+    // Update first dot position directly to cursor
+    trail[0].x = e.clientX;
+    trail[0].y = e.clientY;
+    trail[0].element.style.left = `${trail[0].x}px`;
+    trail[0].element.style.top = `${trail[0].y}px`;
     
-    // Update the rest of the trail to follow
-    for (let i = 1; i < trailElements.length; i++) {
+    // Update the rest with delay
+    for (let i = 1; i < trail.length; i++) {
       setTimeout(() => {
-        trailElements[i].x = trailElements[i-1].x;
-        trailElements[i].y = trailElements[i-1].y;
-        trailElements[i].element.style.left = `${trailElements[i].x}px`;
-        trailElements[i].element.style.top = `${trailElements[i].y}px`;
-      }, i * 20);
+        trail[i].x = trail[i-1].x;
+        trail[i].y = trail[i-1].y;
+        trail[i].element.style.left = `${trail[i].x}px`;
+        trail[i].element.style.top = `${trail[i].y}px`;
+      }, i * 30);
     }
   });
 
-  // Add fancy hover effects to buttons
-  const buttons = document.querySelectorAll('a.button-3d, nav a');
-  buttons.forEach(button => {
-    button.addEventListener('mouseover', () => {
-      button.style.transition = 'all 0.3s';
-    });
-  });
-
-  // Increment visitor counter (just for fun, not actually tracking)
-  const counter = document.querySelector('.counter');
-  if (counter) {
+  // Update visitor counter in local storage
+  const counterElement = document.querySelector('.counter');
+  if (counterElement) {
     let count = parseInt(localStorage.getItem('visitorCount') || '1337');
-    count++;
-    counter.textContent = count;
-    localStorage.setItem('visitorCount', count.toString());
+    counterElement.textContent = count;
+    localStorage.setItem('visitorCount', (count + 1).toString());
   }
+  
+  // Add "Under Construction" blink animation
+  const constructionElements = document.querySelectorAll('.under-construction');
+  constructionElements.forEach(el => {
+    setInterval(() => {
+      el.style.visibility = el.style.visibility === 'hidden' ? 'visible' : 'hidden';
+    }, 800);
+  });
 });

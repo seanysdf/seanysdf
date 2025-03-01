@@ -23,6 +23,38 @@
     {
       "name": "skating",
       "pageBundle": false,
+      "previewPath": "skating",
+      "fields": [
+        {
+          "title": "Title",
+          "name": "title",
+          "type": "string",
+          "required": true
+        },
+        {
+          "title": "Date",
+          "name": "date",
+          "type": "datetime",
+          "required": true
+        },
+        {
+          "title": "YouTube Video ID",
+          "name": "video_id",
+          "type": "string",
+          "description": "The ID from the YouTube URL (e.g., 'dQw4w9WgXcQ')"
+        },
+        {
+          "title": "Location",
+          "name": "location",
+          "type": "string",
+          "description": "Where the skating took place"
+        }
+      ]
+    },
+    {
+      "name": "cats",
+      "pageBundle": false,
+      "previewPath": "cats",
       "fields": [
         {
           "title": "Title",
@@ -39,13 +71,15 @@
         {
           "title": "Image",
           "name": "image",
-          "type": "image"
+          "type": "image",
+          "description": "Path to the cat image (e.g., '/assets/images/cats/my-cat.jpg')"
         }
       ]
     },
     {
       "name": "journal",
       "pageBundle": false,
+      "previewPath": "journal",
       "fields": [
         {
           "title": "Title",
@@ -62,13 +96,15 @@
         {
           "title": "Mood",
           "name": "mood",
-          "type": "string"
+          "type": "string",
+          "description": "How you're feeling (e.g., Happy, Thoughtful, Excited)"
         }
       ]
     },
     {
       "name": "random",
       "pageBundle": false,
+      "previewPath": "random",
       "fields": [
         {
           "title": "Title",
@@ -84,33 +120,59 @@
         }
       ]
     }
-  ]
-}
-          "type": "string",
-          "required": true
-        },
-        {
-          "title": "Date",
-          "name": "date",
-          "type": "datetime",
-          "required": true
-        },
-        {
-          "title": "YouTube Video ID",
-          "name": "video_id",
-          "type": "string"
-        },
-        {
-          "title": "Location",
-          "name": "location",
-          "type": "string"
-        }
+  ],
+  "frontMatter.content.snippets": [
+    {
+      "name": "Skating Post Template",
+      "description": "Template for a new skating post",
+      "body": [
+        "---",
+        "title: \"${1:My Skating Video}\"",
+        "date: ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}",
+        "video_id: \"${2:YouTube ID}\"",
+        "location: \"${3:Skatepark}\"",
+        "---",
+        "",
+        "${4:Write about your skating experience here...}"
       ]
     },
     {
-      "name": "cats",
-      "pageBundle": false,
-      "fields": [
-        {
-          "title": "Title",
-          "name": "title",
+      "name": "Cat Post Template",
+      "description": "Template for a new cat post",
+      "body": [
+        "---",
+        "title: \"${1:Cat Picture Title}\"",
+        "date: ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}",
+        "image: \"/assets/images/cats/${2:image-file-name.jpg}\"",
+        "---",
+        "",
+        "${3:Write about your cat here...}"
+      ]
+    },
+    {
+      "name": "Journal Entry Template",
+      "description": "Template for a new journal entry",
+      "body": [
+        "---",
+        "title: \"${1:Journal Entry Title}\"",
+        "date: ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}",
+        "mood: \"${2:Your Mood}\"",
+        "---",
+        "",
+        "${3:Write your journal entry here...}"
+      ]
+    },
+    {
+      "name": "Random Thought Template",
+      "description": "Template for a new random thought",
+      "body": [
+        "---",
+        "title: \"${1:Random Thought Title}\"",
+        "date: ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}",
+        "---",
+        "",
+        "${2:Write your random thoughts here...}"
+      ]
+    }
+  ]
+}
