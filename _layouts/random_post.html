@@ -1,0 +1,13 @@
+---
+layout: default
+---
+<div class="post random-post">
+  <h1>{{ page.title }}</h1>
+  <div class="post-meta">
+    <p>Posted on: {{ page.date | date: "%B %d, %Y" }}</p>
+  </div>
+
+  <div class="post-content">
+    {{ content }}
+  </div>
+</div>
