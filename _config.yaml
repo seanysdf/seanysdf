@@ -1,0 +1,52 @@
+title: Sean's 90s Website
+description: Skate videos, cat pics, random thoughts, and more!
+baseurl: ""
+url: "https://seanysdf.github.io/seans-website"
+
+# Build settings
+markdown: kramdown
+permalink: /:categories/:title/
+
+collections:
+  skating:
+    output: true
+    permalink: /skating/:path/
+  cats:
+    output: true
+    permalink: /cats/:path/
+  journal:
+    output: true
+    permalink: /journal/:path/
+  random:
+    output: true
+    permalink: /random/:path/
+
+defaults:
+  - scope:
+      path: ""
+      type: "skating"
+    values:
+      layout: "skating_post"
+  - scope:
+      path: ""
+      type: "cats"
+    values:
+      layout: "cat_post"
+  - scope:
+      path: ""
+      type: "journal"
+    values:
+      layout: "journal_post"
+  - scope:
+      path: ""
+      type: "random"
+    values:
+      layout: "random_post"
+  - scope:
+      path: ""
+    values:
+      layout: "default"
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
