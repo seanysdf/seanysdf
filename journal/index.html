@@ -1,21 +1,293 @@
+## _layouts/default.html (Main layout)
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title }} | {{ site.title }}</title>
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  <link rel="icon" href="{{ '/assets/images/favicon.gif' | relative_url }}" type="image/gif">
+  {% seo %}
+</head>
+<body>
+  <div class="scanlines"></div>
+  
+  <div class="page-container">
+    <header>
+      <div class="logo-container">
+        <a href="{{ '/' | relative_url }}">
+          <img src="{{ '/assets/images/logo.gif' | relative_url }}" alt="{{ site.title }} Logo">
+        </a>
+      </div>
+      
+      <nav class="old-school-tabs">
+        <ul>
+          <li {% if page.url == '/' %}class="active"{% endif %}><a href="{{ '/' | relative_url }}">Home</a></li>
+          <li {% if page.url contains '/skating' %}class="active"{% endif %}><a href="{{ '/skating' | relative_url }}">Skating</a></li>
+          <li {% if page.url contains '/cats' %}class="active"{% endif %}><a href="{{ '/cats' | relative_url }}">Cats</a></li>
+          <li {% if page.url contains '/journal' %}class="active"{% endif %}><a href="{{ '/journal' | relative_url }}">Journal</a></li>
+          <li {% if page.url contains '/random' %}class="active"{% endif %}><a href="{{ '/random' | relative_url }}">Random</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      {{ content }}
+    </main>
+
+    <footer>
+      <div class="web-badges">
+        <img src="{{ '/assets/images/made-with-notepad.gif' | relative_url }}" alt="Made with Notepad">
+        <img src="{{ '/assets/images/best-viewed-800x600.gif' | relative_url }}" alt="Best viewed at 800x600">
+        <img src="{{ '/assets/images/get-netscape.gif' | relative_url }}" alt="Get Netscape">
+      </div>
+      <div class="counter-container">
+        <div>Visitors: <span class="counter">1337</span></div>
+      </div>
+      <div class="copyright">
+        © {{ site.time | date: '%Y' }} {{ site.title }} | Last updated: {{ site.time | date: '%m/%d/%Y' }}
+      </div>
+    </footer>
+  </div>
+
+  <script src="{{ '/assets/js/script.js' | relative_url }}"></script>
+</body>
+</html>
+```
+
+## index.html (Homepage)
+```html
+---
+layout: default
+title: Home
+---
+
+<div class="home-container">
+  <div class="blinking-welcome">
+    <h1>Welcome to Sean's Website!</h1>
+    <div class="under-construction">
+      <img src="{{ '/assets/images/under-construction.gif' | relative_url }}" alt="Under Construction">
+      <span>Always under construction</span>
+      <img src="{{ '/assets/images/under-construction.gif' | relative_url }}" alt="Under Construction">
+    </div>
+  </div>
+
+  <div class="home-sections">
+    <div class="home-section">
+      <div class="section-title">
+        <img src="{{ '/assets/images/new.gif' | relative_url }}" alt="New">
+        <h2>Skating Videos</h2>
+      </div>
+      <div class="section-preview">
+        <p>Check out my latest tricks and wipeouts!</p>
+        {% assign latest_skate = site.skating | sort: 'date' | reverse | first %}
+        {% if latest_skate %}
+        <div class="latest-item">
+          <span class="latest-label">Latest:</span>
+          <a href="{{ latest_skate.url | relative_url }}">{{ latest_skate.title }}</a>
+          <span class="latest-date">({{ latest_skate.date | date: "%m/%d/%Y" }})</span>
+        </div>
+        {% endif %}
+        <a href="{{ '/skating' | relative_url }}" class="enter-button">Enter</a>
+      </div>
+    </div>
+    
+    <div class="home-section">
+      <div class="section-title">
+        <img src="{{ '/assets/images/cool.gif' | relative_url }}" alt="Cool">
+        <h2>Cat Pictures</h2>
+      </div>
+      <div class="section-preview">
+        <p>My cat being weird and cute</p>
+        {% assign latest_cat = site.cats | sort: 'date' | reverse | first %}
+        {% if latest_cat %}
+        <div class="latest-item">
+          <span class="latest-label">Latest:</span>
+          <a href="{{ latest_cat.url | relative_url }}">{{ latest_cat.title }}</a>
+          <span class="latest-date">({{ latest_cat.date | date: "%m/%d/%Y" }})</span>
+        </div>
+        {% endif %}
+        <a href="{{ '/cats' | relative_url }}" class="enter-button">Enter</a>
+      </div>
+    </div>
+    
+    <div class="home-section">
+      <div class="section-title">
+        <img src="{{ '/assets/images/hot.gif' | relative_url }}" alt="Hot">
+        <h2>Journal</h2>
+      </div>
+      <div class="section-preview">
+        <p>Thoughts, experiences, and musings</p>
+        {% assign latest_journal = site.journal | sort: 'date' | reverse | first %}
+        {% if latest_journal %}
+        <div class="latest-item">
+          <span class="latest-label">Latest:</span>
+          <a href="{{ latest_journal.url | relative_url }}">{{ latest_journal.title }}</a>
+          <span class="latest-date">({{ latest_journal.date | date: "%m/%d/%Y" }})</span>
+        </div>
+        {% endif %}
+        <a href="{{ '/journal' | relative_url }}" class="enter-button">Enter</a>
+      </div>
+    </div>
+    
+    <div class="home-section">
+      <div class="section-title">
+        <img src="{{ '/assets/images/wacky.gif' | relative_url }}" alt="Wacky">
+        <h2>Random</h2>
+      </div>
+      <div class="section-preview">
+        <p>Whatever's on my mind, no filter</p>
+        {% assign latest_random = site.random | sort: 'date' | reverse | first %}
+        {% if latest_random %}
+        <div class="latest-item">
+          <span class="latest-label">Latest:</span>
+          <a href="{{ latest_random.url | relative_url }}">{{ latest_random.title }}</a>
+          <span class="latest-date">({{ latest_random.date | date: "%m/%d/%Y" }})</span>
+        </div>
+        {% endif %}
+        <a href="{{ '/random' | relative_url }}" class="enter-button">Enter</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="welcome-message">
+    <marquee scrollamount="3">Thanks for visiting my personal space on the information superhighway! -- Last updated {{ site.time | date: '%m/%d/%Y' }}</marquee>
+  </div>
+</div>
+```
+
+## skating/index.html (Skating section - message board style)
+```html
+---
+layout: default
+title: Skating
+---
+
+<div class="section-container">
+  <div class="section-header">
+    <h1>
+      <img src="{{ '/assets/images/skate-icon.gif' | relative_url }}" alt="Skate Icon">
+      Skating Videos
+      <img src="{{ '/assets/images/skate-icon.gif' | relative_url }}" alt="Skate Icon">
+    </h1>
+  </div>
+
+  <div class="message-board">
+    <div class="board-header">
+      <div class="column-title">Topic</div>
+      <div class="column-date">Date</div>
+      <div class="column-info">Location</div>
+    </div>
+    
+    {% for post in site.skating reversed %}
+    <div class="message-row" data-post-url="{{ post.url | relative_url }}">
+      <div class="column-title">
+        <div class="post-icon">
+          <img src="{{ '/assets/images/folder.gif' | relative_url }}" alt="Folder">
+        </div>
+        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+      </div>
+      <div class="column-date">{{ post.date | date: "%m/%d/%Y" }}</div>
+      <div class="column-info">{% if post.location %}{{ post.location }}{% else %}-{% endif %}</div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="add-post">
+    <a href="https://github.com/seanysdf/seans-website/new/main/_skating" class="post-button">
+      <img src="{{ '/assets/images/new-post.gif' | relative_url }}" alt="New Post">
+      Add New Skate Video
+    </a>
+  </div>
+</div>
+```
+
+## cats/index.html (Cats section - message board style)
+```html
+---
+layout: default
+title: Cats
+---
+
+<div class="section-container">
+  <div class="section-header">
+    <h1>
+      <img src="{{ '/assets/images/cat-icon.gif' | relative_url }}" alt="Cat Icon">
+      Cat Pictures
+      <img src="{{ '/assets/images/cat-icon.gif' | relative_url }}" alt="Cat Icon">
+    </h1>
+  </div>
+
+  <div class="message-board">
+    <div class="board-header">
+      <div class="column-title">Topic</div>
+      <div class="column-date">Date</div>
+    </div>
+    
+    {% for post in site.cats reversed %}
+    <div class="message-row" data-post-url="{{ post.url | relative_url }}">
+      <div class="column-title">
+        <div class="post-icon">
+          <img src="{{ '/assets/images/folder.gif' | relative_url }}" alt="Folder">
+        </div>
+        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+      </div>
+      <div class="column-date">{{ post.date | date: "%m/%d/%Y" }}</div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="add-post">
+    <a href="https://github.com/seanysdf/seans-website/new/main/_cats" class="post-button">
+      <img src="{{ '/assets/images/new-post.gif' | relative_url }}" alt="New Post">
+      Add New Cat Picture
+    </a>
+  </div>
+</div>
+```
+
+## journal/index.html (Journal section - message board style)
+```html
 ---
 layout: default
 title: Journal
 ---
 
-<div class="section-header">
-  <h1>My Journal</h1>
-  <img src="{{ '/assets/images/journal.gif' | relative_url }}" alt="Notebook animation">
-</div>
-
-<div class="posts-container">
-  {% for post in site.journal reversed %}
-  <div class="post-card">
-    <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
-    <p class="date">{{ post.date | date: "%B %d, %Y" }}</p>
-    {% if post.mood %}<p class="mood">Mood: {{ post.mood }}</p>{% endif %}
-    <p class="excerpt">{{ post.excerpt | strip_html | truncatewords: 25 }}</p>
-    <a href="{{ post.url | relative_url }}" class="read-more">Read More</a>
+<div class="section-container">
+  <div class="section-header">
+    <h1>
+      <img src="{{ '/assets/images/journal-icon.gif' | relative_url }}" alt="Journal Icon">
+      My Journal
+      <img src="{{ '/assets/images/journal-icon.gif' | relative_url }}" alt="Journal Icon">
+    </h1>
   </div>
-  {% endfor %}
+
+  <div class="message-board">
+    <div class="board-header">
+      <div class="column-title">Topic</div>
+      <div class="column-date">Date</div>
+      <div class="column-info">Mood</div>
+    </div>
+    
+    {% for post in site.journal reversed %}
+    <div class="message-row" data-post-url="{{ post.url | relative_url }}">
+      <div class="column-title">
+        <div class="post-icon">
+          <img src="{{ '/assets/images/folder.gif' | relative_url }}" alt="Folder">
+        </div>
+        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+      </div>
+      <div class="column-date">{{ post.date | date: "%m/%d/%Y" }}</div>
+      <div class="column-info">{% if post.mood %}{{ post.mood }}{% else %}-{% endif %}</div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="add-post">
+    <a href="https://github.com/seanysdf/seans-website/new/main/_journal" class="post-button">
+      <img src="{{ '/assets/images/new-post.gif' | relative_url }}" alt="New Post">
+      Add New Journal Entry
+    </a>
+  </div>
 </div>

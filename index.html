@@ -4,38 +4,94 @@ title: Home
 ---
 
 <div class="home-container">
-  <div class="welcome-text">
-    <h1 class="blink">Welcome to My 90s Website!</h1>
-    <p><marquee scrollamount="3">Skate videos • Cat pics • Random thoughts • Since 2025</marquee></p>
+  <div class="blinking-welcome">
+    <h1>Welcome to Sean's Website!</h1>
+    <div class="under-construction">
+      <img src="{{ '/assets/images/under-construction.gif' | relative_url }}" alt="Under Construction">
+      <span>Always under construction</span>
+      <img src="{{ '/assets/images/under-construction.gif' | relative_url }}" alt="Under Construction">
+    </div>
   </div>
 
   <div class="home-sections">
-    <div class="section-box skating">
-      <h2>Skating</h2>
-      <p>Check out my latest tricks and wipeouts</p>
-      <a href="/skating" class="button-3d">Enter</a>
+    <div class="home-section">
+      <div class="section-title">
+        <img src="{{ '/assets/images/new.gif' | relative_url }}" alt="New">
+        <h2>Skating Videos</h2>
+      </div>
+      <div class="section-preview">
+        <p>Check out my latest tricks and wipeouts!</p>
+        {% assign latest_skate = site.skating | sort: 'date' | reverse | first %}
+        {% if latest_skate %}
+        <div class="latest-item">
+          <span class="latest-label">Latest:</span>
+          <a href="{{ latest_skate.url | relative_url }}">{{ latest_skate.title }}</a>
+          <span class="latest-date">({{ latest_skate.date | date: "%m/%d/%Y" }})</span>
+        </div>
+        {% endif %}
+        <a href="{{ '/skating' | relative_url }}" class="enter-button">Enter</a>
+      </div>
     </div>
     
-    <div class="section-box cats">
-      <h2>Cat Stuff</h2>
-      <p>My cat being cute and weird</p>
-      <a href="/cats" class="button-3d">Enter</a>
+    <div class="home-section">
+      <div class="section-title">
+        <img src="{{ '/assets/images/cool.gif' | relative_url }}" alt="Cool">
+        <h2>Cat Pictures</h2>
+      </div>
+      <div class="section-preview">
+        <p>My cat being weird and cute</p>
+        {% assign latest_cat = site.cats | sort: 'date' | reverse | first %}
+        {% if latest_cat %}
+        <div class="latest-item">
+          <span class="latest-label">Latest:</span>
+          <a href="{{ latest_cat.url | relative_url }}">{{ latest_cat.title }}</a>
+          <span class="latest-date">({{ latest_cat.date | date: "%m/%d/%Y" }})</span>
+        </div>
+        {% endif %}
+        <a href="{{ '/cats' | relative_url }}" class="enter-button">Enter</a>
+      </div>
     </div>
     
-    <div class="section-box journal">
-      <h2>Journal</h2>
-      <p>My thoughts and experiences</p>
-      <a href="/journal" class="button-3d">Enter</a>
+    <div class="home-section">
+      <div class="section-title">
+        <img src="{{ '/assets/images/hot.gif' | relative_url }}" alt="Hot">
+        <h2>Journal</h2>
+      </div>
+      <div class="section-preview">
+        <p>Thoughts, experiences, and musings</p>
+        {% assign latest_journal = site.journal | sort: 'date' | reverse | first %}
+        {% if latest_journal %}
+        <div class="latest-item">
+          <span class="latest-label">Latest:</span>
+          <a href="{{ latest_journal.url | relative_url }}">{{ latest_journal.title }}</a>
+          <span class="latest-date">({{ latest_journal.date | date: "%m/%d/%Y" }})</span>
+        </div>
+        {% endif %}
+        <a href="{{ '/journal' | relative_url }}" class="enter-button">Enter</a>
+      </div>
     </div>
     
-    <div class="section-box random">
-      <h2>Random</h2>
-      <p>Weird stuff and daily thoughts</p>
-      <a href="/random" class="button-3d">Enter</a>
+    <div class="home-section">
+      <div class="section-title">
+        <img src="{{ '/assets/images/wacky.gif' | relative_url }}" alt="Wacky">
+        <h2>Random</h2>
+      </div>
+      <div class="section-preview">
+        <p>Whatever's on my mind, no filter</p>
+        {% assign latest_random = site.random | sort: 'date' | reverse | first %}
+        {% if latest_random %}
+        <div class="latest-item">
+          <span class="latest-label">Latest:</span>
+          <a href="{{ latest_random.url | relative_url }}">{{ latest_random.title }}</a>
+          <span class="latest-date">({{ latest_random.date | date: "%m/%d/%Y" }})</span>
+        </div>
+        {% endif %}
+        <a href="{{ '/random' | relative_url }}" class="enter-button">Enter</a>
+      </div>
     </div>
   </div>
 
-  <div class="visitor-counter">
-    <p>You are visitor number: <span class="counter">1337</span></p>
+  <div class="welcome-message">
+    <marquee scrollamount="3">Thanks for visiting my personal space on the information superhighway! -- Last updated {{ site.time | date: '%m/%d/%Y' }}</marquee>
   </div>
 </div>

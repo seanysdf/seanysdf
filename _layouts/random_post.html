@@ -1,13 +1,28 @@
 ---
 layout: default
 ---
-<div class="post random-post">
-  <h1>{{ page.title }}</h1>
-  <div class="post-meta">
-    <p>Posted on: {{ page.date | date: "%B %d, %Y" }}</p>
-  </div>
 
-  <div class="post-content">
-    {{ content }}
+<div class="post-container">
+  <div class="post-breadcrumb">
+    <a href="{{ '/random' | relative_url }}">Random</a> » {{ page.title }}
+  </div>
+  
+  <div class="post-wrapper">
+    <div class="post-header">
+      <h1>{{ page.title }}</h1>
+      <div class="post-meta">
+        <span class="meta-item">Posted: {{ page.date | date: "%B %d, %Y" }}</span>
+      </div>
+    </div>
+    
+    <div class="post-content">
+      {{ content }}
+    </div>
+    
+    <div class="post-footer">
+      <div class="post-actions">
+        <a href="{{ '/random' | relative_url }}" class="back-button">« Back to Random</a>
+      </div>
+    </div>
   </div>
 </div>

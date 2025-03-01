@@ -1,14 +1,29 @@
 ---
 layout: default
 ---
-<div class="post journal-post">
-  <h1>{{ page.title }}</h1>
-  <div class="post-meta">
-    <p>Posted on: {{ page.date | date: "%B %d, %Y" }}</p>
-    {% if page.mood %}<p>Mood: {{ page.mood }}</p>{% endif %}
-  </div>
 
-  <div class="post-content">
-    {{ content }}
+<div class="post-container">
+  <div class="post-breadcrumb">
+    <a href="{{ '/journal' | relative_url }}">Journal</a> » {{ page.title }}
+  </div>
+  
+  <div class="post-wrapper">
+    <div class="post-header">
+      <h1>{{ page.title }}</h1>
+      <div class="post-meta">
+        <span class="meta-item">Posted: {{ page.date | date: "%B %d, %Y" }}</span>
+        {% if page.mood %}<span class="meta-item">Mood: {{ page.mood }}</span>{% endif %}
+      </div>
+    </div>
+    
+    <div class="post-content">
+      {{ content }}
+    </div>
+    
+    <div class="post-footer">
+      <div class="post-actions">
+        <a href="{{ '/journal' | relative_url }}" class="back-button">« Back to Journal</a>
+      </div>
+    </div>
   </div>
 </div>

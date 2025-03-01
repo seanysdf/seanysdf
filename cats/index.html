@@ -1,25 +1,40 @@
 ---
 layout: default
-title: Cat Stuff
+title: Cats
 ---
 
-<div class="section-header">
-  <h1>Cat Pictures & Stories</h1>
-  <img src="{{ '/assets/images/cat.gif' | relative_url }}" alt="Cat animation">
-</div>
-
-<div class="posts-container">
-  {% for post in site.cats reversed %}
-  <div class="post-card">
-    {% if post.image %}
-    <div class="thumbnail">
-      <img src="{{ post.image | relative_url }}" alt="{{ post.title }}">
-    </div>
-    {% endif %}
-    <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
-    <p class="date">{{ post.date | date: "%B %d, %Y" }}</p>
-    <p class="excerpt">{{ post.excerpt | strip_html | truncatewords: 25 }}</p>
-    <a href="{{ post.url | relative_url }}" class="read-more">Read More</a>
+<div class="section-container">
+  <div class="section-header">
+    <h1>
+      <img src="{{ '/assets/images/cat-icon.gif' | relative_url }}" alt="Cat Icon">
+      Cat Pictures
+      <img src="{{ '/assets/images/cat-icon.gif' | relative_url }}" alt="Cat Icon">
+    </h1>
   </div>
-  {% endfor %}
+
+  <div class="message-board">
+    <div class="board-header">
+      <div class="column-title">Topic</div>
+      <div class="column-date">Date</div>
+    </div>
+    
+    {% for post in site.cats reversed %}
+    <div class="message-row" data-post-url="{{ post.url | relative_url }}">
+      <div class="column-title">
+        <div class="post-icon">
+          <img src="{{ '/assets/images/folder.gif' | relative_url }}" alt="Folder">
+        </div>
+        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+      </div>
+      <div class="column-date">{{ post.date | date: "%m/%d/%Y" }}</div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="add-post">
+    <a href="https://github.com/seanysdf/seans-website/new/main/_cats" class="post-button">
+      <img src="{{ '/assets/images/new-post.gif' | relative_url }}" alt="New Post">
+      Add New Cat Picture
+    </a>
+  </div>
 </div>
