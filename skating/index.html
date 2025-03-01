@@ -1,0 +1,20 @@
+---
+layout: default
+title: Skating
+---
+
+<div class="section-header">
+  <h1>Skating Videos</h1>
+  <img src="{{ '/assets/images/skate.gif' | relative_url }}" alt="Skater animation">
+</div>
+
+<div class="posts-container">
+  {% for post in site.skating reversed %}
+  <div class="post-card">
+    <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+    <p class="date">{{ post.date | date: "%B %d, %Y" }}</p>
+    <p class="excerpt">{{ post.excerpt | strip_html | truncatewords: 25 }}</p>
+    <a href="{{ post.url | relative_url }}" class="read-more">Watch Video ▶</a>
+  </div>
+  {% endfor %}
+</div>
