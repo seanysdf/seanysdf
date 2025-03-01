@@ -1,0 +1,21 @@
+---
+layout: default
+title: Journal
+---
+
+<div class="section-header">
+  <h1>My Journal</h1>
+  <img src="{{ '/assets/images/journal.gif' | relative_url }}" alt="Notebook animation">
+</div>
+
+<div class="posts-container">
+  {% for post in site.journal reversed %}
+  <div class="post-card">
+    <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+    <p class="date">{{ post.date | date: "%B %d, %Y" }}</p>
+    {% if post.mood %}<p class="mood">Mood: {{ post.mood }}</p>{% endif %}
+    <p class="excerpt">{{ post.excerpt | strip_html | truncatewords: 25 }}</p>
+    <a href="{{ post.url | relative_url }}" class="read-more">Read More</a>
+  </div>
+  {% endfor %}
+</div>
