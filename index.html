@@ -4,94 +4,117 @@ title: Home
 ---
 
 <div class="home-container">
-  <div class="blinking-welcome">
-    <h1>Welcome to Sean's Website!</h1>
-    <div class="under-construction">
-      <img src="{{ '/assets/images/under-construction.gif' | relative_url }}" alt="Under Construction">
-      <span>Always under construction</span>
-      <img src="{{ '/assets/images/under-construction.gif' | relative_url }}" alt="Under Construction">
-    </div>
+  <!-- Welcome "billboard" -->
+  <div class="welcome-banner">
+    <h1 class="glow-text">Welcome to My 90s Zone!</h1>
+    <div class="banner-caption">Skate videos • Cat pics • Random thoughts</div>
   </div>
-
-  <div class="home-sections">
-    <div class="home-section">
-      <div class="section-title">
-        <img src="{{ '/assets/images/new.gif' | relative_url }}" alt="New">
-        <h2>Skating Videos</h2>
-      </div>
-      <div class="section-preview">
-        <p>Check out my latest tricks and wipeouts!</p>
-        {% assign latest_skate = site.skating | sort: 'date' | reverse | first %}
-        {% if latest_skate %}
-        <div class="latest-item">
-          <span class="latest-label">Latest:</span>
-          <a href="{{ latest_skate.url | relative_url }}">{{ latest_skate.title }}</a>
-          <span class="latest-date">({{ latest_skate.date | date: "%m/%d/%Y" }})</span>
+  
+  <!-- Main content table structure -->
+  <table class="content-table">
+    <tr>
+      <td class="section-cell skating-cell">
+        <div class="section-header">
+          <img src="{{ '/assets/images/skate.gif' | relative_url }}" alt="Skate" class="section-icon">
+          <h2>Skating Vids</h2>
         </div>
-        {% endif %}
-        <a href="{{ '/skating' | relative_url }}" class="enter-button">Enter</a>
-      </div>
-    </div>
+        <div class="section-content">
+          <p>Check out my latest tricks and wipeouts!</p>
+          
+          {% assign latest_skate = site.skating | sort: 'date' | reverse | first %}
+          {% if latest_skate %}
+          <div class="latest-block">
+            <div class="latest-label">Latest Update:</div>
+            <a href="{{ latest_skate.url | relative_url }}" class="latest-link">{{ latest_skate.title }}</a>
+            <div class="latest-date">{{ latest_skate.date | date: "%m/%d/%Y" }}</div>
+          </div>
+          {% endif %}
+          
+          <div class="button-container">
+            <a href="{{ '/skating' | relative_url }}" class="button-3d">Enter</a>
+          </div>
+        </div>
+      </td>
+      
+      <td class="section-cell cats-cell">
+        <div class="section-header">
+          <img src="{{ '/assets/images/cat.gif' | relative_url }}" alt="Cat" class="section-icon">
+          <h2>Cat Pictures</h2>
+        </div>
+        <div class="section-content">
+          <p>My cat being weird and adorable</p>
+          
+          {% assign latest_cat = site.cats | sort: 'date' | reverse | first %}
+          {% if latest_cat %}
+          <div class="latest-block">
+            <div class="latest-label">Latest Update:</div>
+            <a href="{{ latest_cat.url | relative_url }}" class="latest-link">{{ latest_cat.title }}</a>
+            <div class="latest-date">{{ latest_cat.date | date: "%m/%d/%Y" }}</div>
+          </div>
+          {% endif %}
+          
+          <div class="button-container">
+            <a href="{{ '/cats' | relative_url }}" class="button-3d">Enter</a>
+          </div>
+        </div>
+      </td>
+    </tr>
     
-    <div class="home-section">
-      <div class="section-title">
-        <img src="{{ '/assets/images/cool.gif' | relative_url }}" alt="Cool">
-        <h2>Cat Pictures</h2>
-      </div>
-      <div class="section-preview">
-        <p>My cat being weird and cute</p>
-        {% assign latest_cat = site.cats | sort: 'date' | reverse | first %}
-        {% if latest_cat %}
-        <div class="latest-item">
-          <span class="latest-label">Latest:</span>
-          <a href="{{ latest_cat.url | relative_url }}">{{ latest_cat.title }}</a>
-          <span class="latest-date">({{ latest_cat.date | date: "%m/%d/%Y" }})</span>
+    <tr>
+      <td class="section-cell journal-cell">
+        <div class="section-header">
+          <img src="{{ '/assets/images/journal.gif' | relative_url }}" alt="Journal" class="section-icon">
+          <h2>My Journal</h2>
         </div>
-        {% endif %}
-        <a href="{{ '/cats' | relative_url }}" class="enter-button">Enter</a>
-      </div>
-    </div>
-    
-    <div class="home-section">
-      <div class="section-title">
-        <img src="{{ '/assets/images/hot.gif' | relative_url }}" alt="Hot">
-        <h2>Journal</h2>
-      </div>
-      <div class="section-preview">
-        <p>Thoughts, experiences, and musings</p>
-        {% assign latest_journal = site.journal | sort: 'date' | reverse | first %}
-        {% if latest_journal %}
-        <div class="latest-item">
-          <span class="latest-label">Latest:</span>
-          <a href="{{ latest_journal.url | relative_url }}">{{ latest_journal.title }}</a>
-          <span class="latest-date">({{ latest_journal.date | date: "%m/%d/%Y" }})</span>
+        <div class="section-content">
+          <p>Thoughts and experiences I've had</p>
+          
+          {% assign latest_journal = site.journal | sort: 'date' | reverse | first %}
+          {% if latest_journal %}
+          <div class="latest-block">
+            <div class="latest-label">Latest Update:</div>
+            <a href="{{ latest_journal.url | relative_url }}" class="latest-link">{{ latest_journal.title }}</a>
+            <div class="latest-date">{{ latest_journal.date | date: "%m/%d/%Y" }}</div>
+          </div>
+          {% endif %}
+          
+          <div class="button-container">
+            <a href="{{ '/journal' | relative_url }}" class="button-3d">Enter</a>
+          </div>
         </div>
-        {% endif %}
-        <a href="{{ '/journal' | relative_url }}" class="enter-button">Enter</a>
-      </div>
-    </div>
-    
-    <div class="home-section">
-      <div class="section-title">
-        <img src="{{ '/assets/images/wacky.gif' | relative_url }}" alt="Wacky">
-        <h2>Random</h2>
-      </div>
-      <div class="section-preview">
-        <p>Whatever's on my mind, no filter</p>
-        {% assign latest_random = site.random | sort: 'date' | reverse | first %}
-        {% if latest_random %}
-        <div class="latest-item">
-          <span class="latest-label">Latest:</span>
-          <a href="{{ latest_random.url | relative_url }}">{{ latest_random.title }}</a>
-          <span class="latest-date">({{ latest_random.date | date: "%m/%d/%Y" }})</span>
+      </td>
+      
+      <td class="section-cell random-cell">
+        <div class="section-header">
+          <img src="{{ '/assets/images/random.gif' | relative_url }}" alt="Random" class="section-icon">
+          <h2>Random Stuff</h2>
         </div>
-        {% endif %}
-        <a href="{{ '/random' | relative_url }}" class="enter-button">Enter</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="welcome-message">
-    <marquee scrollamount="3">Thanks for visiting my personal space on the information superhighway! -- Last updated {{ site.time | date: '%m/%d/%Y' }}</marquee>
+        <div class="section-content">
+          <p>Whatever's on my mind, no filter</p>
+          
+          {% assign latest_random = site.random | sort: 'date' | reverse | first %}
+          {% if latest_random %}
+          <div class="latest-block">
+            <div class="latest-label">Latest Update:</div>
+            <a href="{{ latest_random.url | relative_url }}" class="latest-link">{{ latest_random.title }}</a>
+            <div class="latest-date">{{ latest_random.date | date: "%m/%d/%Y" }}</div>
+          </div>
+          {% endif %}
+          
+          <div class="button-container">
+            <a href="{{ '/random' | relative_url }}" class="button-3d">Enter</a>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </table>
+  
+  <!-- Cool divider -->
+  <div class="neon-divider"></div>
+  
+  <!-- Status banner -->
+  <div class="status-banner">
+    <span>Last updated: {{ site.time | date: '%m/%d/%Y' }}</span>
+    <span class="blink-text">Email me!</span>
   </div>
 </div>

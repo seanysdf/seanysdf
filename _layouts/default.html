@@ -9,17 +9,24 @@
   {% seo %}
 </head>
 <body>
-  <div class="scanlines"></div>
-  
-  <div class="page-container">
+  <div class="page-wrapper">
+    <!-- Header with animated logo and tabs -->
     <header>
-      <div class="logo-container">
-        <a href="{{ '/' | relative_url }}">
-          <img src="{{ '/assets/images/logo.gif' | relative_url }}" alt="{{ site.title }} Logo">
+      <div class="header-top">
+        <a href="{{ '/' | relative_url }}" class="logo">
+          <img src="{{ '/assets/images/logo.gif' | relative_url }}" alt="{{ site.title }}">
         </a>
+        <div class="header-deco">
+          <img src="{{ '/assets/images/fire.gif' | relative_url }}" alt="Fire" class="fire-gif">
+          <div class="hit-counter">
+            <span>Visitors:</span>
+            <span class="counter-digits">1337</span>
+          </div>
+          <img src="{{ '/assets/images/fire.gif' | relative_url }}" alt="Fire" class="fire-gif">
+        </div>
       </div>
       
-      <nav class="old-school-tabs">
+      <nav class="main-nav">
         <ul>
           <li {% if page.url == '/' %}class="active"{% endif %}><a href="{{ '/' | relative_url }}">Home</a></li>
           <li {% if page.url contains '/skating' %}class="active"{% endif %}><a href="{{ '/skating' | relative_url }}">Skating</a></li>
@@ -28,23 +35,32 @@
           <li {% if page.url contains '/random' %}class="active"{% endif %}><a href="{{ '/random' | relative_url }}">Random</a></li>
         </ul>
       </nav>
+      
+      <div class="under-construction-banner">
+        <marquee scrollamount="3">
+          <img src="{{ '/assets/images/construction.gif' | relative_url }}" alt="Under Construction">
+          Welcome to my website! Always under construction!
+          <img src="{{ '/assets/images/construction.gif' | relative_url }}" alt="Under Construction">
+        </marquee>
+      </div>
     </header>
 
-    <main>
+    <!-- Main content area with 3D borders -->
+    <main class="main-content">
       {{ content }}
     </main>
 
+    <!-- Footer with webring and badges -->
     <footer>
-      <div class="web-badges">
-        <img src="{{ '/assets/images/made-with-notepad.gif' | relative_url }}" alt="Made with Notepad">
-        <img src="{{ '/assets/images/best-viewed-800x600.gif' | relative_url }}" alt="Best viewed at 800x600">
-        <img src="{{ '/assets/images/get-netscape.gif' | relative_url }}" alt="Get Netscape">
+      <div class="footer-badges">
+        <img src="{{ '/assets/images/netscape-now.gif' | relative_url }}" alt="Netscape Now">
+        <img src="{{ '/assets/images/ie-compatible.gif' | relative_url }}" alt="IE Compatible">
+        <img src="{{ '/assets/images/valid-html.gif' | relative_url }}" alt="Valid HTML">
       </div>
-      <div class="counter-container">
-        <div>Visitors: <span class="counter">1337</span></div>
-      </div>
-      <div class="copyright">
+      <div class="footer-text">
         © {{ site.time | date: '%Y' }} {{ site.title }} | Last updated: {{ site.time | date: '%m/%d/%Y' }}
+        <br>
+        <span class="best-viewed">Best viewed in 800x600 resolution</span>
       </div>
     </footer>
   </div>
